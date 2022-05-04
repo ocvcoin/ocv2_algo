@@ -89,7 +89,7 @@ if ((( $varname == "2" ))); then
 fi
 
 
-
+cd ../../../../
 
 
 if ((( $varname == "1" ))); then
@@ -97,11 +97,11 @@ if ((( $varname == "1" ))); then
 	
 Here are the compiler flags you need to add to any project:
 
-	-I\$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=\$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -std=c++11	
+	-I$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -std=c++11	
 
 For example, you can build sample_miner.cpp with this command:
 	
-	g++ -o sample_miner  sample_miner.cpp -I\$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=\$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -std=c++11	
+	g++ -o sample_miner  sample_miner.cpp -I$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -std=c++11	
 
 You run it with this command:
 
@@ -116,11 +116,11 @@ if ((( $varname == "2" ))); then
 	
 Here are the compiler flags you need to add to any project:	
 	
-	-I\$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=\$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -static -std=c++11	
+	-I$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -static -std=c++11	
 
 For example, you can build sample_miner.cpp with this command:
 	
-	x86_64-w64-mingw32-gcc -o sample_miner.exe  sample_miner.cpp -I\$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=\$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -static -std=c++11
+	x86_64-w64-mingw32-gcc -o sample_miner.exe  sample_miner.cpp -I$PWD/dependencies/sha \`env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv\` -static -std=c++11
 	
 	"
     
