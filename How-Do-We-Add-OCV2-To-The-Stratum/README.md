@@ -6,6 +6,7 @@ https://github.com/ocvcoin/ocv2_algo/blob/master/README.md
 
 Then copy the ocv2.cpp and ocv2.hpp files to the stratum/algos folder.
 
+Edit the makefile in the stratum/algos directory and add the "ocv2.cpp" to the SOURCES section.
 
 Edit the makefile in the stratum/algos directory and add the given flags to the CXXFLAGS section.
 
