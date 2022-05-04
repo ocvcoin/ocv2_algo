@@ -76,7 +76,7 @@ So we will test.
 	
 
 
-
+/*
 	
 	//You can test that everything works correctly with the standalone function by removing the comment.	
 	block_header[76]=*(( char*)&nonce+0);
@@ -103,7 +103,7 @@ So we will test.
 		
 		}
 		
-
+*/
 
 	
 	
