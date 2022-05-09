@@ -40,8 +40,19 @@ fi
 
 
 
-sudo apt update
-sudo apt -y install  git cmake unzip g++-mingw-w64-x86-64-posix gcc g++ wget pkg-config
+apt update
+apt -y install  git cmake unzip gcc g++ wget pkg-config
+
+
+
+
+
+if apt -y install g++-mingw-w64-x86-64-posix ; then
+    echo ""
+else
+    apt -y install g++-mingw-w64-x86-64
+fi
+
 
 
 mkdir dependencies/opencv
