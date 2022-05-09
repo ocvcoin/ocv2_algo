@@ -159,7 +159,7 @@ x86_64-w64-mingw32-g++ -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$
 
 	For example, you can build sample_miner.cpp with this command:
 	
-			x86_64-w64-mingw32-gcc -o sample_miner.exe  sample_miner.cpp I$PWD/include -L$PWD/lib -locv2
+			x86_64-w64-mingw32-gcc -o sample_miner.exe  sample_miner.cpp -I$PWD/include -L$PWD/lib -locv2
 	
 	"
     
