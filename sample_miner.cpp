@@ -1,10 +1,10 @@
 
-
+#include <cstring>
 #include <iostream>
 
 #include <chrono>
 
-#include "ocv2/functions.cpp"
+#include <ocv2.hpp>
 
 
 
@@ -24,8 +24,8 @@ int main(int argc, char** argv)
 
 
 //test! important!!!	
-if(ocv2_test_algo() != true)
-		cerr << endl << "Error!! ocv2_test_algo() failed." << endl;
+if(!ocv2_test_algo())
+		cerr << endl << "Error!! ocv2_test_algo() failed!" << endl;
 	
 /*
 It is necessary to check whether opencv is compiled correctly and verify that the cpu is able to correctly calculate our algorithm.
@@ -66,23 +66,41 @@ So we will test.
 	
 	char hash[32]; //output hash
 	
-	ocv2_init_image(block_header); //this should definitely be outside the loop. otherwise you will waste your cpu power!
+	
+	//some required allocations
+	char alloc1[1782];
+	char alloc2[1782];
+	char alloc3[4];
+	
+	//inject nonce to blockheader
+	block_header[76]=*(( char*)(&nonce+0));
+	block_header[77]=*(( char*)(&nonce+1));
+	block_header[78]=*(( char*)(&nonce+2));
+	block_header[79]=*(( char*)(&nonce+3));		
+	
+	
+	ocv2_init_image(block_header,alloc1,alloc2,alloc3); //this should definitely be outside the loop. otherwise you will waste your cpu power!
+	
 	
 	
 	//start mining	
 	while(true)	{	
 		
-	ocv2_calculate_hash(block_header,&nonce,hash);
+	//inject nonce to blockheader	
+	block_header[76]=*(( char*)(&nonce+0));
+	block_header[77]=*(( char*)(&nonce+1));
+	block_header[78]=*(( char*)(&nonce+2));
+	block_header[79]=*(( char*)(&nonce+3));
+
+
 	
+	ocv2_calculate_hash(block_header,alloc1,alloc2,alloc3,hash);
 
 
 /*
 	
 	//You can test that everything works correctly with the standalone function by removing the comment.	
-	block_header[76]=*(( char*)&nonce+0);
-	block_header[77]=*(( char*)&nonce+1);
-	block_header[78]=*(( char*)&nonce+2);
-	block_header[79]=*(( char*)&nonce+3);
+
 	
 	char tmp_hash_for_test[32];
 	ocv2_hash(block_header,tmp_hash_for_test); //this is a standalone alternative function. It is not designed for mining and is slow.
@@ -127,6 +145,9 @@ So we will test.
 	
 	
 	/*
+	
+	don't forget!
+	this char array is already reversed!
 	
 		hash[0] == '\x00' and hash[1] == '\x00' ...
 		here to check leading zeros bla bla bla...
