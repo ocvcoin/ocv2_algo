@@ -115,7 +115,7 @@ if ((( $varname == "1" ))); then
 
 
 
-g++ -c -o tmp/this-system-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv` -std=c++11
+g++ -c -o tmp/this-system-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv` -std=c++11 -fPIC
 
 
 g++ -shared -o lib/libocv2.so tmp/this-system-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv` -std=c++11
