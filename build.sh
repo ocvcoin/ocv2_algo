@@ -179,10 +179,10 @@ fi
 
 
 echo "
-	You can include it in projects that support the "./configure" command as follows.
+	You can include it in projects that support the \"./configure\" command as follows.
 	(it doesn't matter in c or c++ project)
 	
-			./configure CFLAGS="-I$PWD/include -L$PWD/lib -locv2" LDFLAGS="-I$PWD/include -L$PWD/lib -locv2" LIBS="-I$PWD/include -L$PWD/lib -locv2" CPPFLAGS="-I$PWD/include -L$PWD/lib -locv2"
+			./configure CFLAGS=\"-I$PWD/include -L$PWD/lib -locv2\" LDFLAGS=\"-I$PWD/include -L$PWD/lib -locv2\" LIBS=\"-I$PWD/include -L$PWD/lib -locv2\" CPPFLAGS=\"-I$PWD/include -L$PWD/lib -locv2\"
 	
 	Now you can use the 4 functions in it by adding the header below.
 	
