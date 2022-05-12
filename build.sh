@@ -9,9 +9,8 @@ fi
 
 echo "
 
-This script compiles libocv2.dll / libocv2.so and gives you the necessary compiler flags.
-
-(tested on UBUNTU21)
+This script builds the libocv2.so / libocv2.dll file.
+(tested on UBUNTU 21 & 16)
 
 Type Target:
 
