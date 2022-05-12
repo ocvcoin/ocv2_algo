@@ -10,7 +10,7 @@ fi
 echo "
 
 This script builds the libocv2.so / libocv2.dll file.
-(tested on UBUNTU 21 & 16)
+(tested on UBUNTU 16 - 21)
 
 Type Target:
 
