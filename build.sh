@@ -25,7 +25,7 @@ Type Target:
 read varname
 
 
-if ((( $varname != "1" ) && ( $varname != "2" ))); then
+if [[( "$varname" != "1" ) && ( "$varname" != "2" )]]; then
     echo "
 	incorrect. You will enter 1 or 2
 	"
