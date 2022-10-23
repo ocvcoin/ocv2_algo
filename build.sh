@@ -9,13 +9,14 @@ fi
 
 echo "
 
-This script builds the libocv2.so / libocv2.dll file.
-(tested on UBUNTU 16 - 21)
+This script builds the libocv2
+(only works on ubuntu) (tested ubuntu versions: 16,18,20,21)
 
 Type Target:
 
-1 - This System
-2 - 64 BIT WINDOWS
+1 - Build & Install on this computer
+
+2 - Build libocv2.dll for 64 BIT WINDOWS
 
 "
 
@@ -27,7 +28,9 @@ read varname
 
 if [[( "$varname" != "1" ) && ( "$varname" != "2" )]]; then
     echo "
-	incorrect. You will enter 1 or 2
+	
+	Incorrect! You must enter 1 or 2
+	
 	"
     exit
 fi
@@ -119,25 +122,42 @@ g++ -c -o tmp/this-system-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sh
 
 g++ -shared -o lib/libocv2.so tmp/this-system-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv` -std=c++11 -O3
 
-cp lib/libocv2.so /usr/lib/
+cp lib/libocv2.so /usr/local/lib/
+
+cp include/ocv2.hpp /usr/local/include/
 
 
     echo "
 	
-	Compiled lib file here: 
-	
-			$PWD/lib/libocv2.so
-			(also copied here: /usr/lib/libocv2.so)
+	libocv2 successfully installed!
+			
+			
+			
 	
 	Here are the compiler flags you need to add to any project:
 
-			-I$PWD/include -L$PWD/lib -locv2	
+			-I/usr/local/include -L/usr/local/lib -locv2	
 
-	For example, you can build sample_miner.cpp with this command:
+	Eg, you can build sample_miner.cpp with this command:
 	
-			g++ -o sample_miner  sample_miner.cpp -I$PWD/include -L$PWD/lib -locv2 -std=c++11
+			g++ -o sample_miner  sample_miner.cpp -I/usr/local/include -L/usr/local/lib -locv2 -std=c++11
 
 	"
+	
+	
+echo "
+	You can include it in projects that support the \"./configure\" command as follows.
+	(it doesn't matter in c or c++ project)
+	
+			./configure CFLAGS=\"-I/usr/local/include -L/usr/local/lib -locv2\" LDFLAGS=\"-I/usr/local/include -L/usr/local/lib -locv2\" LIBS=\"-I/usr/local/include -L/usr/local/lib -locv2\" CPPFLAGS=\"-I/usr/local/include -L/usr/local/lib -locv2\"
+	
+	Now you can use the 4 functions in it by adding the header below.
+	
+			#include <ocv2.hpp>
+"	
+	
+	
+	
 fi
 
 if ((( $varname == "2" ))); then
@@ -160,6 +180,9 @@ x86_64-w64-mingw32-g++ -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$
 	Compiled lib file here: 
 	
 			$PWD/lib/libocv2.dll
+			
+	Required header file here:
+			$PWD/include/ocv2.hpp
 
 			( Don't forget to copy this dll to the directory where your application is located!!! )
 	
@@ -168,16 +191,12 @@ x86_64-w64-mingw32-g++ -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$
 			-I$PWD/include -L$PWD/lib -locv2
 					
 
-	For example, you can build sample_miner.cpp with this command:
+	Eg, you can build sample_miner.cpp with this command:
 	
 			x86_64-w64-mingw32-g++ -o sample_miner.exe  sample_miner.cpp -I$PWD/include -L$PWD/lib -locv2 -std=c++11
 	
 	"
-    
-fi
-
-
-
+	
 echo "
 	You can include it in projects that support the \"./configure\" command as follows.
 	(it doesn't matter in c or c++ project)
@@ -187,6 +206,13 @@ echo "
 	Now you can use the 4 functions in it by adding the header below.
 	
 			#include <ocv2.hpp>
-"
+"	
+	
+    
+fi
+
+
+
+
 
 
