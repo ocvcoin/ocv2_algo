@@ -66,5 +66,6 @@ Review the algos table in the YIIMPFRONTEND database (this is your MariaDB/mysql
 
 
 Don't forget to create the ocv2.conf file.
+
 Don't forget to recompile stratum.
 
