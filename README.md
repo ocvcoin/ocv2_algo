@@ -1,8 +1,14 @@
-# ocv2_algo
-This repo contains examples and scripts so you can add the ocv2 algorithm to your projects
+# libocv2
 
-Firstly build libocv2.dll / libocv2.so via auto script (for ubuntu 16 - 21)
+This repo contains libocv2 and sample miner.
 
+You can easly add the ocv2 algorithm to your projects.
+
+How to build & install libocv2 ?
+
+This is very easy. 
+
+Just run our bash script! (only works on ubuntu) (tested ubuntu versions: 16,18,20,21)
 
 ```
 
@@ -13,4 +19,4 @@ cd ocv2_algo && sudo bash build.sh
 ```
 
 
-When the script is finished, it will give you the compiler flags so you can add it to the project you want.
+When the script is finished, it will give you the compiler flags so you can add it to the any project you want.
