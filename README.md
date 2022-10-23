@@ -1,7 +1,7 @@
 # ocv2_algo
 This repo contains examples and scripts so you can add the ocv2 algorithm to your projects
 
-Firstly build libocv2.dll / libocv2.so via auto script (tested on ubuntu 16 - 21 / if target is windows, requires ubuntu 21)
+Firstly build libocv2.dll / libocv2.so via auto script (for ubuntu 16 - 21)
 
 
 ```
