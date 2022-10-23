@@ -37,13 +37,13 @@ fi
 
 
 
-
+set -e
 
 apt update
 apt -y install  git cmake unzip gcc g++ wget pkg-config
 
 
-
+set +e
 
 
 if apt -y install g++-mingw-w64-x86-64-posix ; then
