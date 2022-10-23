@@ -51,7 +51,7 @@ Add the following code to the g_algos array in the stratum/stratum.cpp file
 Add following header to stratum/stratum.h file
 ```
 
-#include <algos/ocv2.hpp>
+#include <ocv2.hpp>
 
 ```
 
