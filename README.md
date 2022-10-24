@@ -42,16 +42,30 @@ Add the following code to the main function in the stratum/stratum.cpp file
 
 Add the following code to the g_algos array in the stratum/stratum.cpp file
 ```
-	{"ocv2", ocv2_hash, 1, 0, 0},
+	{"ocv2", ocv2_hash_with_len, 1, 0, 0},
 	
 ```
 
 
 
-Add following header to stratum/stratum.h file
+Add following code to end of stratum/stratum.h file
 ```
 
 #include <ocv2.hpp>
+
+void ocv2_hash_with_len(const char *block_header, char *output, uint32_t len) {	
+
+	ocv2_hash((char*)block_header,output);
+
+}
+
+```
+
+
+Add following code to end of stratum/Makefile file
+```
+
+LDFLAGS += -I/usr/local/include -L/usr/local/lib -locv2
 
 ```
 
