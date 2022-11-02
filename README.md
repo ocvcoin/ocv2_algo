@@ -35,6 +35,20 @@ Firstly, run the script above to install libocv2
 After that...
 
 
+Add following code to `stratum/stratum.cpp` file
+```
+
+#include <ocv2.hpp>
+
+void ocv2_hash_with_len(const char *block_header, char *output, unsigned int len) {	
+
+	ocv2_hash((char*)block_header,output);
+
+}
+
+```
+
+
 Add the following code to the main function in the `stratum/stratum.cpp` file
 ```
 	if(ocv2_test_algo() != 1)
@@ -49,20 +63,6 @@ Add the following code to the g_algos array in the `stratum/stratum.cpp` file
 	
 ```
 
-
-
-Add following code to end of `stratum/stratum.h` file
-```
-
-#include <ocv2.hpp>
-
-void ocv2_hash_with_len(const char *block_header, char *output, uint32_t len) {	
-
-	ocv2_hash((char*)block_header,output);
-
-}
-
-```
 
 Add the following code to `stratum/Makefile` file (the line below the expression starting with `LDFLAGS=`...)
 ```
