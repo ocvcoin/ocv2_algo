@@ -126,6 +126,10 @@ cp lib/libocv2.so /usr/local/lib/
 
 cp include/ocv2.hpp /usr/local/include/
 
+ln -s /usr/local/lib/libocv2.so /usr/lib/libocv2.so
+
+ln -s /usr/local/include/ocv2.hpp /usr/include/ocv2.hpp
+
 
     echo "
 	
