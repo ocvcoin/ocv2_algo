@@ -78,7 +78,7 @@ CFLAGS += -I/usr/local/include -L/usr/local/lib -locv2
 Add your new algo to the `web\yaamp\core\functions\yaamp.php` file. There are up to three (3) places you may need to edit.
 
 
-Review the `algos` table in the `YIIMPFRONTEND` database (this is your MariaDB/mysql server). Likely you will need to add an entry into this table using phpMyAdmin. Without it other parts if YIIMP won’t function and the algorithm won’t show on the home page.
+Review the `algos` table in the `YIIMPFRONTEND` database (this is your MariaDB/MySQL server). Likely you will need to add an entry into this table using phpMyAdmin. Without it other parts if YIIMP won’t function and the algorithm won’t show on the home page.
 
 
 
