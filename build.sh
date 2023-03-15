@@ -75,6 +75,7 @@ fi
 
 
 cd opencv-70bbf17b133496bd7d54d034b0f94bd869e0e810
+sed -i '21,22 s/^/#/' cmake/OpenCVCompilerOptions.cmake
 mkdir build && cd build
 
 
