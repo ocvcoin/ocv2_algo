@@ -76,6 +76,7 @@ fi
 
 cd opencv-70bbf17b133496bd7d54d034b0f94bd869e0e810
 sed -i '21,22 s/^/#/' cmake/OpenCVCompilerOptions.cmake
+sed -i 's/PyString_AsString(obj);/(char*)PyString_AsString(obj);/' modules/python/src2/cv2.cpp
 mkdir build && cd build
 
 
