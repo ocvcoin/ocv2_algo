@@ -45,6 +45,7 @@ set -e
 apt update
 apt -y install  git cmake unzip gcc g++ wget pkg-config
 
+apt -y upgrade ca-certificates
 
 set +e
 
