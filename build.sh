@@ -7,16 +7,22 @@ if (( $EUID != 0 )); then
     exit
 fi
 
-echo "
+
+
+
+if [ -z "$1" ]; then
+  echo "
 
 This script builds the libocv2
 (only works on ubuntu) (tested ubuntu versions: 16,18,20,21)
 
 Type Target:
 
-1 - Build & Install on this computer
+1 - Build & Install on this computer (slow)(not recommended for mining)
 
-2 - Build libocv2.dll for 64 BIT WINDOWS
+2 - Build libocv2.dll for x86 based 64 BIT WINDOWS (slow)(not recommended for mining)
+
+3 - See faster options! Just for mining! Not guaranted %100 correct hash!
 
 "
 
@@ -24,18 +30,28 @@ Type Target:
 
 
 read varname
+else
+  varname="$1"
+fi
 
 
-if [[( "$varname" != "1" ) && ( "$varname" != "2" )]]; then
+
+
+
+
+if [[( "$varname" != "1" ) && ( "$varname" != "2" ) && ( "$varname" != "3" )]]; then
     echo "
 	
-	Incorrect! You must enter 1 or 2
+	Incorrect! You must enter 1 or 2 or 3
 	
 	"
     exit
 fi
 
-
+if ((( $varname == "3" ))); then
+    bash build_experimental.sh
+	exit
+fi
 
 
 export DEBIAN_FRONTEND=noninteractive
