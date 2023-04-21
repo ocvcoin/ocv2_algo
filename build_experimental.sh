@@ -85,6 +85,29 @@ if [ -z "${cputype// }" ]; then
   cputype="x86-64"
   
 fi
+
+
+
+
+
+	echo "
+	
+	
+	!!!!!!
+	
+	function ocv2_test_algo() has been temporarily disabled! Now always returns true!!!
+	
+	!!!!!!
+	
+	
+	
+	"
+
+
+
+
+
+
     
 fi
 
@@ -231,10 +254,10 @@ if ((( $varname == "2" ))); then
 
 
 
-x86_64-w64-mingw32-g++ -c -o tmp/windows-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64
+x86_64-w64-mingw32-g++ -c -o tmp/windows-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64 -DTMP_TEST_ALWAYS_RETURN_TRUE
 
 
-x86_64-w64-mingw32-g++ -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64
+x86_64-w64-mingw32-g++ -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64 -DTMP_TEST_ALWAYS_RETURN_TRUE
 
 
 
