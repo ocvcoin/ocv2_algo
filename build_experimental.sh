@@ -64,7 +64,7 @@ Please enter the CPU type of the Windows machine where you intend to run the com
 
 Some acceptable values: native nocona core2 nehalem corei7 westmere sandybridge corei7-avx ivybridge core-avx-i haswell core-avx2 broadwell skylake skylake-avx512 cannonlake icelake-client icelake-server cascadelake tigerlake cooperlake bonnell atom silvermont slm goldmont goldmont-plus tremont knl knm x86-64 x86-64-v2 x86-64-v3 x86-64-v4 
 
-Check this link ("-march=cpu-type" section) for all supported values:
+Check this link (-march=cpu-type section) for all supported values:
 https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
 
 Enter cpu type or leave blank:
