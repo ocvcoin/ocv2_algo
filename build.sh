@@ -48,6 +48,25 @@ if [[( "$varname" != "1" ) && ( "$varname" != "2" ) && ( "$varname" != "3" )]]; 
     exit
 fi
 
+if ((( $varname == "1" ))); then
+
+
+machine=$(uname -m)
+if [ "$machine" = "x86_64" ]; then
+  echo ""
+else
+  echo "
+  
+  Currently, we can only confirm 100% correct hash calculation on x86-based 64bit processors. You can try option 3
+
+"
+exit
+fi
+
+
+fi
+
+
 if ((( $varname == "3" ))); then
     bash build_experimental.sh
 	exit
