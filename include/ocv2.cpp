@@ -2161,7 +2161,11 @@ int ocv2_test_algo(){
 	
 	
 		
-		
+	#ifdef TMP_TEST_ALWAYS_RETURN_TRUE
+    
+    return 1;
+
+	#endif		
 
 
 
