@@ -6,9 +6,11 @@ You can easly add the ocv2 algorithm to your projects.
 
 How to build & install libocv2 ?
 
-This is very easy. 
-
 Just run our bash script! (only works on ubuntu) (tested ubuntu versions: 16,18,20,21)
+
+This script builds a libocv2.dll or libocv2.so file for you!
+
+It also generates some information on how you can add ocv2 algo to your project.
 
 ```
 sudo apt update
