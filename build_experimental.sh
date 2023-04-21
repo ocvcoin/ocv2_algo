@@ -60,16 +60,14 @@ echo "
 
 
 
-Enter the cpu type that the target windows operating system is running on. You can also leave this part blank, but it is highly recommended to enter your cpu type for the best optimization.
+Please enter the CPU type of the Windows machine where you intend to run the compiled DLL. While leaving this field blank is an option, we strongly recommend that you input your CPU type for optimal performance optimization. If the Windows machine uses the same model processor as your computer, please type "native."
 
-If the target windows system uses the same model processor as this computer, type: native
+Some acceptable values: native nocona core2 nehalem corei7 westmere sandybridge corei7-avx ivybridge core-avx-i haswell core-avx2 broadwell skylake skylake-avx512 cannonlake icelake-client icelake-server cascadelake tigerlake cooperlake bonnell atom silvermont slm goldmont goldmont-plus tremont knl knm x86-64 x86-64-v2 x86-64-v3 x86-64-v4 
 
-Some acceptable values: native nocona core2 nehalem corei7 westmere sandybridge corei7-avx ivybridge core-avx-i haswell core-avx2 broadwell skylake skylake-avx512 cannonlake icelake-client icelake-server cascadelake tigerlake cooperlake bonnell atom silvermont slm goldmont goldmont-plus tremont knl knm x86-64 x86-64-v2 x86-64-v3 x86-64-v4 eden-x2 nano nano-1000 nano-2000 nano-3000 nano-x2 eden-x4 nano-x4 k8 k8-sse3 opteron opteron-sse3 athlon64 athlon64-sse3 athlon-fx amdfam10 barcelona bdver1 bdver2 bdver3 bdver4 znver1 znver2 znver3 btver1 btver2
-
-We recommend you take a look here (-march=cpu-type section): 
+Check this link ("-march=cpu-type" section) for all supported values:
 https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
 
-Enter your cpu type or leave blank:
+Enter cpu type or leave blank:
 
 "
 
