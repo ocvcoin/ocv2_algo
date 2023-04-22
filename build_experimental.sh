@@ -76,7 +76,7 @@ Enter cpu type or leave blank:
 
 read cputype
 
-cputype=$(echo $name | tr -d '[:space:]')
+cputype=$(echo $cputype | tr -d '[:space:]')
 
 if [ -z "${cputype// }" ]; then
   
