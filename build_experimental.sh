@@ -56,11 +56,14 @@ fi
 if ((( $varname == "2" ))); then
 
 
+if [ -z "$2" ]; then
+  
+
 echo "
 
 
 
-Please enter the CPU type of the Windows machine where you intend to run the compiled DLL. While leaving this field blank is an option, we strongly recommend that you input your CPU type for optimal performance optimization. If the Windows machine uses the same model processor as your computer, please type "native."
+Please enter the CPU type of the Windows machine where you intend to run the compiled DLL. While leaving this field blank is an option, we strongly recommend that you input your CPU type for optimal performance optimization. If the Windows machine uses the same model processor as your computer, please type: native
 
 Some acceptable values: native nocona core2 nehalem corei7 westmere sandybridge corei7-avx ivybridge core-avx-i haswell core-avx2 broadwell skylake skylake-avx512 cannonlake icelake-client icelake-server cascadelake tigerlake cooperlake bonnell atom silvermont slm goldmont goldmont-plus tremont knl knm x86-64 x86-64-v2 x86-64-v3 x86-64-v4 
 
@@ -75,6 +78,12 @@ Enter cpu type or leave blank:
 
 
 read cputype
+
+
+
+else
+  cputype="$2"
+fi
 
 cputype=$(echo $cputype | tr -d '[:space:]')
 
@@ -137,7 +146,7 @@ mkdir dependencies/opencv
 
 cd dependencies/opencv
 
-
+set -e
 
 if [ -d "opencv-4.7.0/build" ]; then
     rm -rf opencv-4.7.0/build
@@ -148,28 +157,29 @@ else
 	unzip 4.7.0.zip
 fi
 
+set +e
 
 cd opencv-4.7.0
 
 mkdir build && cd build
 
 
-
+set -e
 
 
 if ((( $varname == "1" ))); then
-    env CC="gcc" CXX="g++" cmake -DCMAKE_INSTALL_PREFIX:PATH="$PWD/../../this-system-release" -DCMAKE_SKIP_RPATH="ON" -DCMAKE_EXE_LINKER_FLAGS="-static" -DCMAKE_FIND_LIBRARY_SUFFIXES=".a" -DBUILD_opencv_flann=OFF -DBUILD_opencv_ml=OFF -DBUILD_opencv_video=OFF -DBUILD_opencv_shape=OFF -DBUILD_opencv_videoio=OFF -DBUILD_opencv_highgui=OFF -DBUILD_opencv_objdetect=OFF -DBUILD_opencv_superres=OFF -DBUILD_opencv_ts=OFF -DBUILD_opencv_features2d=OFF -DBUILD_opencv_calib3d=OFF -DBUILD_opencv_stitching=OFF -DBUILD_opencv_videostab=OFF -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DBUILD_ZLIB=OFF -DBUILD_TIFF=OFF -DBUILD_JASPER=OFF -DBUILD_JPEG=OFF -DBUILD_PNG=OFF -DBUILD_OPENEXR=OFF -DBUILD_TBB=OFF -DBUILD_WITH_STATIC_CRT=ON -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF -DWITH_1394=OFF -DWITH_AVFOUNDATION=OFF -DWITH_CARBON=OFF -DWITH_CAROTENE=OFF -DWITH_VTK=OFF -DWITH_CUDA=OFF -DWITH_CUFFT=OFF -DWITH_CUBLAS=OFF -DWITH_NVCUVID=OFF -DWITH_EIGEN=OFF -DWITH_VFW=OFF -DWITH_FFMPEG=OFF -DWITH_GSTREAMER=OFF -DWITH_GSTREAMER_0_10=OFF -DWITH_GTK=OFF -DWITH_GTK_2_X=OFF -DWITH_IPP=OFF -DWITH_JASPER=OFF -DWITH_JPEG=OFF -DWITH_WEBP=OFF -DWITH_OPENEXR=OFF -DWITH_OPENGL=OFF -DWITH_OPENVX=OFF -DWITH_OPENNI=OFF -DWITH_OPENNI2=OFF -DWITH_PNG=OFF -DWITH_GDCM=OFF -DWITH_PVAPI=OFF -DWITH_GIGEAPI=OFF -DWITH_ARAVIS=OFF -DWITH_QT=OFF -DWITH_WIN32UI=OFF -DWITH_QUICKTIME=OFF -DWITH_QTKIT=OFF -DWITH_TBB=OFF -DWITH_OPENMP=OFF -DWITH_CSTRIPES=OFF -DWITH_PTHREADS_PF=OFF -DWITH_TIFF=OFF -DWITH_UNICAP=OFF -DWITH_V4L=OFF -DWITH_LIBV4L=OFF -DWITH_DSHOW=OFF -DWITH_MSMF=OFF -DWITH_XIMEA=OFF -DWITH_XINE=OFF -DWITH_CLP=OFF -DWITH_OPENCL=OFF -DWITH_OPENCL_SVM=OFF -DWITH_OPENCLAMDFFT=OFF -DWITH_OPENCLAMDBLAS=OFF -DWITH_DIRECTX=OFF -DWITH_INTELPERC=OFF -DWITH_IPP_A=OFF -DWITH_MATLAB=OFF -DWITH_VA=OFF -DWITH_VA_INTEL=OFF -DWITH_GDAL=OFF -DWITH_GPHOTO2=OFF -DWITH_LAPACK=OFF -DCMAKE_C_FLAGS="-pipe -O3 -march=native -mtune=native" -DCMAKE_CXX_FLAGS="-pipe -O3 -march=native -mtune=native" -DINSTALL_CREATE_DISTRIB=ON -DOPENCV_GENERATE_PKGCONFIG=ON -DBUILD_opencv_dnn=OFF -DBUILD_opencv_gapi=OFF -DCPU_BASELINE="DETECT" -DCPU_DISPATCH=""  ..
+    env CC="gcc" CXX="g++" cmake -DCMAKE_INSTALL_PREFIX:PATH="$PWD/../../this-system-release" -DCMAKE_SKIP_RPATH="ON" -DCMAKE_EXE_LINKER_FLAGS="-static" -DCMAKE_FIND_LIBRARY_SUFFIXES=".a" -DBUILD_opencv_flann=OFF -DBUILD_opencv_ml=OFF -DBUILD_opencv_video=OFF -DBUILD_opencv_shape=OFF -DBUILD_opencv_videoio=OFF -DBUILD_opencv_highgui=OFF -DBUILD_opencv_objdetect=OFF -DBUILD_opencv_superres=OFF -DBUILD_opencv_ts=OFF -DBUILD_opencv_features2d=OFF -DBUILD_opencv_calib3d=OFF -DBUILD_opencv_stitching=OFF -DBUILD_opencv_videostab=OFF -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DBUILD_ZLIB=OFF -DBUILD_TIFF=OFF -DBUILD_JASPER=OFF -DBUILD_JPEG=OFF -DBUILD_PNG=OFF -DBUILD_OPENEXR=OFF -DBUILD_TBB=OFF -DBUILD_WITH_STATIC_CRT=ON -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF -DWITH_1394=OFF -DWITH_AVFOUNDATION=OFF -DWITH_CARBON=OFF -DWITH_CAROTENE=OFF -DWITH_VTK=OFF -DWITH_CUDA=OFF -DWITH_CUFFT=OFF -DWITH_CUBLAS=OFF -DWITH_NVCUVID=OFF -DWITH_EIGEN=OFF -DWITH_VFW=OFF -DWITH_FFMPEG=OFF -DWITH_GSTREAMER=OFF -DWITH_GSTREAMER_0_10=OFF -DWITH_GTK=OFF -DWITH_GTK_2_X=OFF -DWITH_IPP=OFF -DWITH_JASPER=OFF -DWITH_JPEG=OFF -DWITH_WEBP=OFF -DWITH_OPENEXR=OFF -DWITH_OPENGL=OFF -DWITH_OPENVX=OFF -DWITH_OPENNI=OFF -DWITH_OPENNI2=OFF -DWITH_PNG=OFF -DWITH_GDCM=OFF -DWITH_PVAPI=OFF -DWITH_GIGEAPI=OFF -DWITH_ARAVIS=OFF -DWITH_QT=OFF -DWITH_WIN32UI=OFF -DWITH_QUICKTIME=OFF -DWITH_QTKIT=OFF -DWITH_TBB=OFF -DWITH_OPENMP=OFF -DWITH_CSTRIPES=OFF -DWITH_PTHREADS_PF=OFF -DWITH_TIFF=OFF -DWITH_UNICAP=OFF -DWITH_V4L=OFF -DWITH_LIBV4L=OFF -DWITH_DSHOW=OFF -DWITH_MSMF=OFF -DWITH_XIMEA=OFF -DWITH_XINE=OFF -DWITH_CLP=OFF -DWITH_OPENCL=OFF -DWITH_OPENCL_SVM=OFF -DWITH_OPENCLAMDFFT=OFF -DWITH_OPENCLAMDBLAS=OFF -DWITH_DIRECTX=OFF -DWITH_INTELPERC=OFF -DWITH_IPP_A=OFF -DWITH_MATLAB=OFF -DWITH_VA=OFF -DWITH_VA_INTEL=OFF -DWITH_GDAL=OFF -DWITH_GPHOTO2=OFF -DWITH_LAPACK=OFF -DCMAKE_C_FLAGS="-pipe -O3 -march=native -mtune=native" -DCMAKE_CXX_FLAGS="-pipe -O3 -march=native -mtune=native" -DINSTALL_CREATE_DISTRIB=ON -DOPENCV_GENERATE_PKGCONFIG=ON -DBUILD_opencv_dnn=OFF -DBUILD_opencv_gapi=OFF -DCPU_BASELINE="DETECT" -DCPU_DISPATCH="" -DBUILD_ZLIB=ON -DOPENCV_TRACE=OFF -DOPENCV_DISABLE_THREAD_SUPPORT=ON  ..
 fi
 
 if ((( $varname == "2" ))); then
     cmake  -DCMAKE_INSTALL_PREFIX:PATH="$PWD/../../windows-release" -DCMAKE_SKIP_RPATH="ON" -DCMAKE_EXE_LINKER_FLAGS="-static" -DCMAKE_FIND_LIBRARY_SUFFIXES=".a" -DBUILD_opencv_flann=OFF -DBUILD_opencv_ml=OFF -DBUILD_opencv_video=OFF -DBUILD_opencv_shape=OFF -DBUILD_opencv_videoio=OFF -DBUILD_opencv_highgui=OFF -DBUILD_opencv_objdetect=OFF -DBUILD_opencv_superres=OFF -DBUILD_opencv_ts=OFF -DBUILD_opencv_features2d=OFF -DBUILD_opencv_calib3d=OFF -DBUILD_opencv_stitching=OFF -DBUILD_opencv_videostab=OFF -DBUILD_SHARED_LIBS=OFF -DBUILD_STATIC_LIBS=ON -DBUILD_ZLIB=OFF -DBUILD_TIFF=OFF -DBUILD_JASPER=OFF -DBUILD_JPEG=OFF -DBUILD_PNG=OFF -DBUILD_OPENEXR=OFF -DBUILD_TBB=OFF -DBUILD_WITH_STATIC_CRT=ON -DINSTALL_C_EXAMPLES=OFF -DINSTALL_PYTHON_EXAMPLES=OFF -DWITH_1394=OFF -DWITH_AVFOUNDATION=OFF -DWITH_CARBON=OFF -DWITH_CAROTENE=OFF -DWITH_VTK=OFF -DWITH_CUDA=OFF -DWITH_CUFFT=OFF -DWITH_CUBLAS=OFF -DWITH_NVCUVID=OFF -DWITH_EIGEN=OFF -DWITH_VFW=OFF -DWITH_FFMPEG=OFF -DWITH_GSTREAMER=OFF -DWITH_GSTREAMER_0_10=OFF -DWITH_GTK=OFF -DWITH_GTK_2_X=OFF -DWITH_IPP=OFF -DWITH_JASPER=OFF -DWITH_JPEG=OFF -DWITH_WEBP=OFF -DWITH_OPENEXR=OFF -DWITH_OPENGL=OFF -DWITH_OPENVX=OFF -DWITH_OPENNI=OFF -DWITH_OPENNI2=OFF -DWITH_PNG=OFF -DWITH_GDCM=OFF -DWITH_PVAPI=OFF -DWITH_GIGEAPI=OFF -DWITH_ARAVIS=OFF -DWITH_QT=OFF -DWITH_WIN32UI=OFF -DWITH_QUICKTIME=OFF -DWITH_QTKIT=OFF -DWITH_TBB=OFF -DWITH_OPENMP=OFF -DWITH_CSTRIPES=OFF -DWITH_PTHREADS_PF=OFF -DWITH_TIFF=OFF -DWITH_UNICAP=OFF -DWITH_V4L=OFF -DWITH_LIBV4L=OFF -DWITH_DSHOW=OFF -DWITH_MSMF=OFF -DWITH_XIMEA=OFF -DWITH_XINE=OFF -DWITH_CLP=OFF -DWITH_OPENCL=OFF -DWITH_OPENCL_SVM=OFF -DWITH_OPENCLAMDFFT=OFF -DWITH_OPENCLAMDBLAS=OFF -DWITH_DIRECTX=OFF -DWITH_INTELPERC=OFF -DWITH_IPP_A=OFF -DWITH_MATLAB=OFF -DWITH_VA=OFF -DWITH_VA_INTEL=OFF -DWITH_GDAL=OFF -DWITH_GPHOTO2=OFF -DWITH_LAPACK=OFF -DCMAKE_C_FLAGS="-pipe -O3 -march=$cputype -mtune=$cputype -m64" -DCMAKE_CXX_FLAGS="-pipe -O3 -march=$cputype -mtune=$cputype -m64" -DINSTALL_CREATE_DISTRIB=ON -DOPENCV_GENERATE_PKGCONFIG=ON -DBUILD_opencv_dnn=OFF -DBUILD_opencv_gapi=OFF \
-	-DCMAKE_C_COMPILER="x86_64-w64-mingw32-gcc" \
+	-DCMAKE_C_COMPILER="x86_64-w64-mingw32-gcc-posix" \
 	-DCMAKE_C_COMPILER_TARGET=x86_64-w64-mingw32 \
-	-DCMAKE_CXX_COMPILER="x86_64-w64-mingw32-g++" \
+	-DCMAKE_CXX_COMPILER="x86_64-w64-mingw32-g++-posix" \
 	-DCMAKE_CXX_COMPILER_TARGET=x86_64-w64-mingw32 \
 	-DCMAKE_SYSTEM_NAME=Windows \
 	-DCMAKE_SYSTEM_PROCESSOR="x86_64" \
-	-DOPENCV_WORKAROUND_CMAKE_20989="ON" \  -DCPU_BASELINE="DETECT" -DCPU_DISPATCH="" ..
+	-DOPENCV_WORKAROUND_CMAKE_20989="ON" \  -DCPU_BASELINE="DETECT" -DCPU_DISPATCH="" -DBUILD_ZLIB=ON -DOPENCV_TRACE=OFF -DOPENCV_DISABLE_THREAD_SUPPORT=ON ..
 fi
 
 
@@ -177,7 +187,7 @@ fi
 
 make && make install
 
-
+set +e
 
 if ((( $varname == "2" ))); then
 	mkdir -p "$PWD/../../windows-release/lib/pkgconfig"
@@ -198,12 +208,14 @@ if ((( $varname == "1" ))); then
 
 
 
-
+set -e
 
 g++ -c -o tmp/this-system-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -fPIC -O3 -march=native -mtune=native
 
 
 g++ -shared -o lib/libocv2.so tmp/this-system-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/this-system-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=native -mtune=native
+
+set +e
 
 cp lib/libocv2.so /usr/local/lib/
 
@@ -250,15 +262,15 @@ fi
 if ((( $varname == "2" ))); then
 
 
+set -e
+
+x86_64-w64-mingw32-g++-posix -c -o tmp/windows-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64 -DTMP_TEST_ALWAYS_RETURN_TRUE
 
 
-x86_64-w64-mingw32-g++ -c -o tmp/windows-release_ocv2.o include/ocv2.cpp -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64 -DTMP_TEST_ALWAYS_RETURN_TRUE
+x86_64-w64-mingw32-g++-posix -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64 -DTMP_TEST_ALWAYS_RETURN_TRUE
 
 
-x86_64-w64-mingw32-g++ -shared -o lib/libocv2.dll tmp/windows-release_ocv2.o -I$PWD/dependencies/sha `env PKG_CONFIG_LIBDIR=$PWD/dependencies/opencv/windows-release/lib/pkgconfig pkg-config --static --cflags --libs opencv4` -std=c++11 -O3 -march=$cputype -mtune=$cputype -m64 -DTMP_TEST_ALWAYS_RETURN_TRUE
-
-
-
+set +e
 
 
 
