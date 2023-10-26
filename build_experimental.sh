@@ -23,9 +23,9 @@ It should only be used for mining!!!
 This script builds the libocv2
 (only works on ubuntu) (tested ubuntu versions: 22)
 
-Type Target:
+Choose an option:
 
-1 - Build & Install on this computer
+1 - Build & Install libocv2.so
 
 2 - Build libocv2.dll for x86 based 64 BIT WINDOWS
 
