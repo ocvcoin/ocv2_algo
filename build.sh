@@ -16,13 +16,13 @@ if [ -z "$1" ]; then
 This script builds the libocv2
 (only works on ubuntu) (tested ubuntu versions: 16,18,20,21)
 
-Type Target:
+Choose an option:
 
-1 - Build & Install on this computer (slow)(not recommended for mining)
+1 - Build & Install libocv2.so
 
-2 - Build libocv2.dll for x86 based 64 BIT WINDOWS (slow)(not recommended for mining)
+2 - Build libocv2.dll for x86 based 64 BIT WINDOWS
 
-3 - See faster options! Just for mining! Not guaranted %100 correct hash!
+
 
 "
 
@@ -39,10 +39,10 @@ fi
 
 
 
-if [[( "$varname" != "1" ) && ( "$varname" != "2" ) && ( "$varname" != "3" )]]; then
+if [[( "$varname" != "1" ) && ( "$varname" != "2" )]]; then
     echo "
 	
-	Incorrect! You must enter 1 or 2 or 3
+	Incorrect! You must enter 1 or 2
 	
 	"
     exit
@@ -57,7 +57,7 @@ if [ "$machine" = "x86_64" ]; then
 else
   echo "
   
-  Currently, we can only confirm 100% correct hash calculation on x86-based 64bit processors. You can try option 3
+  libocv2 is require x86 based 64bit processor
 
 "
 exit
@@ -67,10 +67,7 @@ fi
 fi
 
 
-if ((( $varname == "3" ))); then
-    bash build_experimental.sh
-	exit
-fi
+
 
 
 export DEBIAN_FRONTEND=noninteractive
